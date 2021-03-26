@@ -14,5 +14,6 @@ La creacion de los mismo es en el orden de:
 | 4   | Froggy     |
 | 5   | Donkin     |
 | 6   | Galaga     |
+| 7   | Mario      |
 
 editado en https://stackedit.io
