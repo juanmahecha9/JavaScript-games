@@ -1,0 +1,24 @@
+canvas {
+  display: block;
+  margin: 100px auto;
+  border: black;
+  margin-top: -4px;
+  margin-bottom: -4px;
+  background: radial-gradient(
+    red,
+    black,
+    blue,
+    red,
+    yellow,
+    green,
+    black,
+    red,
+    transparent
+  );
+}
+
+/* Boton de inicio */
+
+#iniciar {
+  margin: 0 0 10px 0;
+}

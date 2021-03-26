@@ -1,0 +1,15 @@
+body {
+  background-color: black;
+}
+canvas {
+  display: block;
+  margin: 100px auto;
+  margin-top: -4px;
+  margin-bottom: -4px;
+  border: white 1px dotted;
+  background-color: black;
+}
+
+#iniciar {
+  margin: 0 0 10px 0;
+}

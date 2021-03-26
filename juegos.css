@@ -1,0 +1,27 @@
+body {
+  background-attachment: fixed;
+  background-color: black;
+}
+
+.titulo {
+  margin: 1.5rem 0;
+}
+.contenidoPrincipal {
+  margin-top: 1rem;
+  border: 2px orange solid;
+  color: blanchedalmond;
+  padding: 1%;
+}
+
+.accordion-item {
+  border: 1px yellow dotted;
+}
+
+.linkJuego {
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.btn {
+  width: 20rem;
+}

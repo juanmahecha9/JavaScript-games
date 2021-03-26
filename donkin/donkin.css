@@ -1,0 +1,42 @@
+body {
+  background: black;
+}
+
+.container {
+  background: black;
+}
+
+canvas {
+  display: block;
+  margin: 100px auto;
+  margin-top: -4px;
+  margin-bottom: -4px;
+  background: black;
+  border: chartreuse 5px double;
+}
+
+#iniciar {
+  margin: 0 0 10px 0;
+}
+
+.card {
+  border: white 2px solid;
+}
+
+.card-header {
+  color: white;
+  border: white 2px dotted;
+  background: black;
+}
+
+.card-body {
+  color: white;
+  border: white 2px dotted;
+  background: black;
+}
+
+.card-footer {
+  color: white;
+  border: white 2px dotted;
+  background: black;
+}

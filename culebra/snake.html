@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./snake.css" />
+    <link rel="icon" href="../icon/snake.svg" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="card text-center">
+        <div class="card-header">
+          <div>
+            <h1 class="text-center">SNAKE</h1>
+            <h3>Score:</h3>
+            <span id="cont1" style="color: red"></span>
+          </div>
+        </div>
+        <div class="card-body">
+          <p style="text-align: center">
+            <span>Velocidad del juego: </span>
+            <input type="range" min="10" max="40" id="velocidad" />
+          </p>
+          <canvas id="canvas" width="600" height="600"></canvas>
+        </div>
+        <div class="card-footer text-muted">
+          <a class="linkJuego" href="../juegos.html">
+            <button type="button" class="btn btn-success">Regresar</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./snake.js"></script>
+</html>

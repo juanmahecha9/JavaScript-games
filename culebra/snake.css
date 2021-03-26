@@ -1,0 +1,11 @@
+.card {
+  margin-top: 1rem;
+}
+canvas {
+  display: block;
+  margin: 100px auto;
+}
+
+.linkJuego {
+  text-decoration: none;
+}

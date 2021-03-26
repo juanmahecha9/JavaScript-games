@@ -1,0 +1,33 @@
+body {
+    background-color: white;
+  }
+  canvas {
+    display: block;
+    margin: 100px auto;
+    margin-top: -4px;
+    margin-bottom: -4px;
+    border: rgb(255, 2, 2) 5px dotted;
+    background-color: black;
+  }
+  
+  #iniciar {
+    margin: 0 0 10px 0;
+  }
+  
+  #cont1{
+    font-size: 1.2rem;
+  }
+
+
+  .card {
+    border: rgb(2, 255, 2) 2px solid;
+  }
+  .card-header{
+    border: rgb(2, 255, 2) 2px solid;
+  }
+  .card-body{
+    border: rgb(2, 255, 2) 1px solid;
+  }
+  .card-footer{
+    border: rgb(2, 255, 2) 1px solid;
+  }

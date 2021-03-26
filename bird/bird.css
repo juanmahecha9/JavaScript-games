@@ -1,0 +1,18 @@
+canvas {
+  display: block;
+  margin: 100px auto;
+  border: black;
+  margin-top: -4px;
+  margin-bottom: -4px;
+  background: radial-gradient(
+    red,
+    black,
+    blue,
+    red,
+    black,
+    green,
+    black,
+    red,
+    transparent
+  );
+}
