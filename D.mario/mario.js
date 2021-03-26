@@ -32,10 +32,18 @@ screen0.superficies.push(...newSurfaceT(22, 33, 40)); //tubos
 let screen1 = {
   tablero: { x: 0, y: 0, w: 40, h: 40, color: "#05A8FF" },
   superficies: [],
-  enemigosSyD: [],
+  enemigosSyD: [
+    {
+      x: 20,
+      y:37,
+      w: 1,
+      h: 1,
+      color: "white",
+      vx: 0,
+    },
+  ],
   time: 0,
 };
-screen1.superficies.push(...newSurfaceX(39, 0, 10));
 screen1.superficies.push(...newSurfaceX(39, 0, 10));
 screen1.superficies.push(...newSurfaceX(39, 15, 25));
 screen1.superficies.push(...newSurfaceX(39, 30, 40));
@@ -45,7 +53,14 @@ screen1.superficies.push(...newSurfaceT(21, 36, 40));
 let screen2 = {
   tablero: { x: 0, y: 0, w: 40, h: 40, color: "#2305FF" },
   superficies: [],
-  enemigosSyD: [],
+  enemigosSyD: [{
+    x: 36,
+    y:33,
+    w: 1,
+    h: 1,
+    color: "white",
+    vx: 0,
+  }],
   time: 0,
 };
 //
@@ -80,6 +95,8 @@ let state = {
 let numberScreen = 0;
 //conatdor de vidas
 let vidas = 4;
+//colores del usuario
+let colorUsuarioVida = ["red", "#CE2775", "#837C7C", "#DCDCDC"];
 
 //Contexto y funcion RECT
 ctx = canvas.getContext("2d");
@@ -190,6 +207,7 @@ function updateUser(user) {
     }
   }
   if (user.y >= 40) {
+    vidas = vidas - 1;
     user.x = 0;
     user.y = 33;
   }
@@ -224,12 +242,6 @@ function updateUser(user) {
   }
   state.key = null;
   // matar al enemigo
-  let pixel = state.screen[numberScreen].enemigosSyD;
-  for (i = 0; i <= pixel - 1; i++) {
-    if (user.x == pixel[i].x && user.y - 1 == pixel[i].y) {
-      pixel.splice(i,1)
-    }
-  }
 }
 
 function updateEnemigosSyD(enemigo, user) {
@@ -252,20 +264,19 @@ function updateEnemigosSyD(enemigo, user) {
     }
 
     //ir a buscar al enemigo
-    if (enemigo[i].x >= user.x) {
+    if (enemigo[i].x > user.x) {
       enemigo[i].vx = -1;
-    } else if (enemigo[i].x <= user.x) {
+    } else if (enemigo[i].x < user.x) {
       enemigo[i].vx = 1;
-    }
-
-    // el el enemigo toca al usuario
-    /* if (enemigo[i].x == user.x && enemigo[i].y == user.y) {
-      alert("Crash...!");
-      user.x = 0;
-      user.y = 30;
-      //restar vidas
+    } else if (enemigo[i].x == user.x && enemigo[i].y == user.y) {
+      // el enemigo alcazo al usuario
       vidas = vidas - 1;
-    } */
+      user.y = 30;
+      user.x = 0;
+      user.color = colorUsuarioVida[vidas - 1];
+    } else if (enemigo[i].x == user.x && enemigo[i].y == user.y + 1) {
+      enemigo.splice(i, 1);
+    }
   }
 }
 
