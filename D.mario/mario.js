@@ -48,6 +48,7 @@ screen1.superficies.push(...newSurfaceX(39, 0, 10));
 screen1.superficies.push(...newSurfaceX(39, 15, 25));
 screen1.superficies.push(...newSurfaceX(39, 30, 40));
 
+screen1.superficies.push(...newSurfaceT(13, 38, 40));
 screen1.superficies.push(...newSurfaceT(21, 36, 40));
 
 let screen2 = {
@@ -250,7 +251,11 @@ function updateEnemigosSyD(enemigo, user) {
     //movimiento de los enemigos
     let time = state.screen[numberScreen].time++;
     if (time > 10) {
-      enemigo[i].x = enemigo[i].x + enemigo[i].vx;
+      //el enemigo no pasa de los tubos
+      new_x = enemigo[i].x + enemigo[i].vx
+      if(isXYGoodPosition(new_x, enemigo[i].y)){
+       enemigo[i].x = new_x;
+      }
       time = 0;
     }
     let isOnSurface = isXYOnSurface(enemigo[i].x, enemigo[i].y); //esta en la superficie
