@@ -3,8 +3,8 @@ let screen0 = {
   superficies: [],
   enemigosSyD: [
     {
-      x: 20,
-      y: 28,
+      x: 28,
+      y: 12,
       w: 1,
       h: 1,
       color: "white",
@@ -35,7 +35,7 @@ let screen1 = {
   enemigosSyD: [
     {
       x: 20,
-      y:37,
+      y: 37,
       w: 1,
       h: 1,
       color: "white",
@@ -54,14 +54,16 @@ screen1.superficies.push(...newSurfaceT(21, 36, 40));
 let screen2 = {
   tablero: { x: 0, y: 0, w: 40, h: 40, color: "#2305FF" },
   superficies: [],
-  enemigosSyD: [{
-    x: 36,
-    y:33,
-    w: 1,
-    h: 1,
-    color: "white",
-    vx: 0,
-  }],
+  enemigosSyD: [
+    {
+      x: 36,
+      y: 33,
+      w: 1,
+      h: 1,
+      color: "white",
+      vx: 0,
+    },
+  ],
   time: 0,
 };
 //
@@ -206,6 +208,8 @@ function updateUser(user) {
     if (numberScreen > 2) {
       numberScreen = 0;
     }
+  } else if (user.x <= 0) {
+    user.x = 0;
   }
   if (user.y >= 40) {
     vidas = vidas - 1;
@@ -252,9 +256,9 @@ function updateEnemigosSyD(enemigo, user) {
     let time = state.screen[numberScreen].time++;
     if (time > 10) {
       //el enemigo no pasa de los tubos
-      new_x = enemigo[i].x + enemigo[i].vx
-      if(isXYGoodPosition(new_x, enemigo[i].y)){
-       enemigo[i].x = new_x;
+      new_x = enemigo[i].x + enemigo[i].vx;
+      if (isXYGoodPosition(new_x, enemigo[i].y)) {
+        enemigo[i].x = new_x;
       }
       time = 0;
     }
@@ -267,7 +271,6 @@ function updateEnemigosSyD(enemigo, user) {
         enemigo[i].y2 = 4;
       }
     }
-
     //ir a buscar al enemigo
     if (enemigo[i].x > user.x) {
       enemigo[i].vx = -1;
@@ -279,12 +282,70 @@ function updateEnemigosSyD(enemigo, user) {
       user.y = 30;
       user.x = 0;
       user.color = colorUsuarioVida[vidas - 1];
-    } else if (enemigo[i].x == user.x && enemigo[i].y == user.y + 1) {
-      enemigo.splice(i, 1);
+    }
+    // fin del loop for
+  }
+  //eliminar al enemigo
+  deleteEnemy(enemigo, user);
+}
+//para generar enemigos al azar al eliminar al primero
+newEnemyPosition = function (array) {
+  datoAleatorio = Math.floor(Math.random() * array.length);
+  //console.log(datoAleatorio);
+  return datoAleatorio;
+};
+//borrar elementos del vector de enemigos
+function deleteEnemy(arrayEnemy, user) {
+  const toDelete1 = [];
+  //conteo de la cantidad de enemigos
+  for (x = 0; x <= arrayEnemy.length - 1; x++) {
+    //enemigo[i].x == user.x && enemigo[i].y == user.y + 1
+    // si se sale de los limites del tablero
+    if (arrayEnemy[x].x <= 0) {
+      toDelete1.push(x);
+    } else if (arrayEnemy[x].x >= 40) {
+      toDelete1.push(x);
+    } else if (arrayEnemy[x].y >= 40) {
+      toDelete1.push(x);
+    } else if (arrayEnemy[x].x == user.x && arrayEnemy[x].y == user.y + 1) {
+      // si el enemigo es aplastado por el usuario
+      toDelete1.push(x);
     }
   }
+  for (x of toDelete1) {
+    arrayEnemy.splice(x, 1);
+    /* let newEnemy_ = newEnemy(state.screen[numberScreen].superficies);
+      state.screen[numberScreen].enemigosSyD.push(newEnemy_) */
+  }
+  // nuevo enemigo
 }
-
+//crear nuevo enemigo
+newEnemy = function (vectorS) {
+  arraySuperficiesLength = vectorS.length; // arreglo de las superficies por pantalla tamanho
+  arraySUperficiesData = vectorS; // arrelo de los datos de la superficie
+  //dato aleatorio del arreglo
+  datoAleatorio = Math.floor(Math.random() * arraySuperficiesLength);
+  //console.log(arraySUperficiesData[datoAleatorio].x, arraySUperficiesData[datoAleatorio].y);
+  let new_x = arraySUperficiesData[datoAleatorio].x;
+  let new_y = arraySUperficiesData[datoAleatorio].y;
+  // evaluar condiciones para la aparicion del nuevo enemigo
+  if (new_x <= 1) {
+    new_x = 1;
+  } else if (new_x >= 39) {
+    new_x = 39;
+  } else if (new_y >= 38) {
+    new_y = 38;
+  }
+  // objeto del nuevo enemigo
+  return {
+    x: new_x,
+    y: new_y - 1,
+    w: 1,
+    h: 1,
+    color: "white",
+  };
+};
+// es una buena poscion?
 function isXYGoodPosition(x, y) {
   // chequea que la posicion no sea una superficie (o un enemigo)
   return !isXYOnArray(x, y, state.screen[numberScreen].superficies);
@@ -318,9 +379,9 @@ function pauseAnimation(x) {
     clearInterval(intervalo);
   }
 }
-function ciclo() {
+ciclo = function () {
   update();
   draw();
-}
+};
 
 intervalo = setInterval(ciclo, 1000 / 10);
