@@ -317,13 +317,31 @@ colide = function () {
             console.log('en el tronco')
         }
     } */
+
+   /*  let isOnSurface = isXYOnSurface(state.sapo.x,state.sapo.y);
+    if(isOnSurface){
+      alert()
+    } */
 };
 
 //Generador de numeros aletorios de 1 en 1
 function random(min, max) {
   return min + Math.floor(Math.random() * (max - min));
 }
-
+//Evaluar si esta en la plataforma
+function isXYOnSurface(x, y) {
+  return isXYOnArray(x, y + 1, state.troncos);
+}
+function isXYOnArray(x, y, array) {
+  for (let j = 0; j <= array.length - 1; j++) {
+    for (let w = 0; w <= array[j].w - 1; w++) {
+      if (array[j].x + w == Math.round(x) && array[j].y == Math.round(y)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
 //Generador numeros aleatorios posicion de 2 en 2
 function aleatorio(min, max) {
   let valor = min + Math.floor(Math.random() * (max - min));
